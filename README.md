@@ -13,7 +13,7 @@ NextTrainApp is a full-featured Spring Boot-based web application for train tick
 - Book up to 4 tickets per user per train
 - Pay securely via Razorpay gateway
 - Download ticket as PDF after payment
-- 📧 **Email confirmation sent automatically after booking**
+- Email confirmation sent automatically after booking
 
 ### 🛠️ Admin<img width="1357" alt="Screenshot 2025-07-08 at 1 14 47 PM" src="https://github.com/user-attachments/assets/585de3bf-6ee2-4121-84e8-0fc1daf0656e" />
 
