@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body style="background-color: #d1d5db; text-align: center; padding-top: 100px; font-family: Arial, sans-serif;">
+
+
+<script th:inline="javascript">
+    // Get bookingId and amount from Thymeleaf
+    const bookingId = /*[[${bookingId}]]*/ '';
+    const amount = /*[[${amount}]]*/ '';
+
+    fetch('/createOrder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'amount=' + amount
+    })
+    .then(response => response.json())
+    .then(order => {
+        const options = {
+            "key": "rzp_test_AXa5IGEOp6MUpe", // <-- Your actual Razorpay Key ID
+            "amount": order.amount, // amount in paise
+            "currency": order.currency,
+            "name": "Train Ticket Reservation",
+            "description": "Ticket booking",
+            "order_id": order.id,
+            "handler": function (response) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/verify';
+                form.innerHTML = `
+                    <input name="bookingId" value="${bookingId}" />
+                    <input name="razorpay_payment_id" value="${response.razorpay_payment_id}" />
+                    <input name="razorpay_order_id" value="${response.razorpay_order_id}" />
+                    <input name="razorpay_signature" value="${response.razorpay_signature}" />
+                `;
+                document.body.appendChild(form);
+                form.submit();
+ 
+            },
+            "theme": { "color": "#3399cc" }
+        };
+        const rzp = new Razorpay(options);
+        rzp.open();
+    })
+    .catch(error => {
+        alert("Oops! Something went wrong. Payment Failed");
+        console.error(error);
+    });
+</script>
+</body>
+</html>

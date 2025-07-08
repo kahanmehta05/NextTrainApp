@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Train Ticket</title>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&amp;display=swap");
+
+
+        body {
+            font-family: "Space Mono", monospace;
+            margin-top: 6.5rem;
+            text-align: center;
+            background-color: #f3f4f6;
+        }
+
+        .main-container {
+            text-align: left;
+            width: 25%;
+            padding: 20px;
+            display: inline-block;
+            margin: auto;
+            border: 1px solid black;
+            border-top: 1px dashed black;
+            border-bottom: 1px dashed black;
+            background-color: #f9fafb;
+        }
+
+        .details-top {
+            line-height: 0;
+            text-align: center;
+        }
+
+        .details-date {
+            text-align: left;
+        }
+
+        .info-one {
+            padding-right: 30px;
+        }
+
+        .info-two {
+            padding-left: 25px;
+        }
+
+        .ele-center {
+            text-align: center;
+        }
+
+        .details-main {
+            line-height: 0;
+            font-size: 1rem;
+        }
+
+        .bus-number {
+            font-weight: bolder;
+        }
+
+        .bus-labels {
+            font-size: 14px;
+        }
+
+        h1 {
+            word-spacing: 10px;
+            font-size: 1rem;
+        }
+
+        .fare-details {
+            word-spacing: 0;
+        }
+
+        .cond-details {
+            padding-right: 70px;
+        }
+
+        .terms {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+
+    <div class="details-top">
+        <small>P.M.P.L.</small>
+    </div>
+
+    <div class="details-date">
+        <small class="info-one" th:text="'Booking ID: ' + ${bookingId}">Booking ID</small>
+        <small class="info-one" th:text="${bookingTime}">Date</small>
+        <small class="info-two">[Time]</small>
+    </div>
+
+    <p class="ele-center" th:text="'Train No: ' + ${train.trainNo}">Train No.</p>
+
+    <div class="details-main">
+        <p class="bus-labels"><span th:text="${bookingTime}">Time</span></p>
+        <p class="bus-labels">SEATS BOOKED: <span th:text="${seatsBooked}">2</span></p>
+    </div>
+
+    <div class="fare">
+        <h1 th:text="'Fare Paid: ₹' + ${fare} + '/-'">Fare</h1>
+        <small class="fare-details" th:text="'Paid: ' + ${paid}">Yes</small>
+        <h1>Total Amount: <span th:text="'₹' + ${fare} + '/-'"></span></h1>
+    </div>
+
+    <div class="details-conductor">
+        <small class="cond-details">Generated</small>
+        <small class="cond-details" th:text="${user.username}">User</small>
+        <small class="cond-details-one">Online</small>
+    </div>
+
+    <p class="ele-center terms">(NON-TRANSFERABLE)</p>
+</div>
+
+</body>
+</html>

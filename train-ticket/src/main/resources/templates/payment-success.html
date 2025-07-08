@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Successful</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background-color: #34D399;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-green-50 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-xl text-center">
+        <div class="success-checkmark mb-6">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h2 class="text-2xl font-bold text-green-600 mb-2">Payment Successful!</h2>
+        <p class="text-gray-700 mb-4">Your booking is confirmed.</p>
+        <a href="/home" class="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition">
+            Back to Home
+        </a>
+    </div>
+
+</body>
+</html>

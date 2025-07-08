@@ -1,0 +1,73 @@
+<!-- ✅ register.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #6b7a99;
+      animation: dayTime 120s linear infinite;
+      overflow: hidden;
+    }
+    @keyframes dayTime {
+      0%, 100% { background-color: #6b7a99; }
+      50% { background-color: #252645; }
+    }
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 4px solid transparent;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+
+<body>
+<div class="center-container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+  <div class="relative bg-white/40 backdrop-blur-lg border border-white/30 shadow-[0_25px_100px_rgba(0,0,0,0.4)] rounded-3xl p-10 max-w-md w-full transition duration-700 hover:scale-105 ring-1 ring-white/50">
+    <h2 class="text-5xl font-extrabold text-center text-white mb-6 tracking-tight drop-shadow-xl">Create Account</h2>
+
+    <!-- ✅ success message -->
+    <p th:if="${param.registered}" class="text-green-200 text-center mb-4">✅ Registered successfully! Please login.</p>
+
+    <form th:action="@{/register}" method="post" class="space-y-6">
+      <div>
+        <label class="block text-sm font-semibold text-white/80 mb-1">Username</label>
+        <input type="text" name="username" required class="w-full px-4 py-3 bg-white/30 text-[#373b5b] border border-white/40 rounded-xl focus:ring-4 focus:ring-indigo-300/40 backdrop-blur-md placeholder-white/70 transition">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-white/80 mb-1">Full Name</label>
+        <input type="text" name="fullName" required class="w-full px-4 py-3 bg-white/30 text-[#373b5b] border border-white/40 rounded-xl focus:ring-4 focus:ring-indigo-300/40 backdrop-blur-md placeholder-white/70 transition">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-white/80 mb-1">Email</label>
+        <input type="email" name="email" required class="w-full px-4 py-3 bg-white/30 text-[#373b5b] border border-white/40 rounded-xl focus:ring-4 focus:ring-indigo-300/40 backdrop-blur-md placeholder-white/70 transition">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-white/80 mb-1">Password</label>
+        <input type="password" name="password" required class="w-full px-4 py-3 bg-white/30 text-[#373b5b] border border-white/40 rounded-xl focus:ring-4 focus:ring-indigo-300/40 backdrop-blur-md placeholder-white/70 transition">
+      </div>
+
+      <button type="submit" class="w-full flex justify-center items-center bg-[#4864e6] hover:bg-[#384fc1] text-white font-bold py-3 rounded-xl shadow-lg transition duration-300 transform hover:scale-105">
+        Register
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-white/80">
+      Already have an account? <a th:href="@{/login-page}" class="text-indigo-200 hover:underline font-semibold">Login</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>

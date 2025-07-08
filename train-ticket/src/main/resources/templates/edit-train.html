@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Train</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out both;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-6 font-sans">
+
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8 animate-fadeInUp">
+        <h2 class="text-3xl font-bold text-indigo-600 text-center mb-6">Edit Train Details</h2>
+
+        <form th:action="@{/admin/train/edit}" th:object="${train}" method="post" class="space-y-6">
+            <input type="hidden" th:field="*{trainNo}" />
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Train Name</label>
+                <input type="text" th:field="*{trainName}" required
+                       class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Source</label>
+                <input type="text" th:field="*{source}" required
+                       class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Destination</label>
+                <input type="text" th:field="*{destination}" required
+                       class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Fare (₹)</label>
+                <input type="number" th:field="*{fare}" step="0.01" required
+                       class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">Number of Coaches</label>
+                <input type="number" th:field="*{numberOfCoaches}" required
+                       class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+
+            <div class="text-center">
+                <button type="submit"
+                        class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-6 py-2 rounded transition duration-300 ease-in-out shadow-lg">
+                    Update Train
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
